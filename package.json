@@ -1,0 +1,36 @@
+{
+  "name": "topgoal-contract",
+  "version": "1.0.0",
+  "description": "topgoal contracts",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "npx truffle compile",
+    "start-net": "npx ganache-cli --deterministic",
+    "mig-dev": "npx truffle migrate --network development",
+    "check-dev": "npx truffle exec --network development ./scripts/checknft.js",
+    "console": "npx truffle console --network development",
+    "mig-test": "npx truffle migrate --reset --network bsctest",
+    "add-minter-test": "npx truffle exec ./scripts/transfer.js --network bsctest",
+    "verify-bsctest": "npx truffle run verify TOPGOALNFT --network bsctest",
+    "mint-batch-bsctest": "npx truffle exec --network bsctest ./scripts/batchmint.js",
+    "mig-bsc": "npx truffle migrate --reset --network bscmainnet",
+    "verify-bsc": "npx truffle run verify TOPGOALNFT --network bscmainnet",
+    "mint-batch-bsc": "npx truffle exec --network bscmainnet ./scripts/batchmint.js"
+  },
+  "author": "wainguo",
+  "license": "ISC",
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.2.0",
+    "@pinata/sdk": "^1.1.23",
+    "ethers": "^5.4.2",
+    "xlsx": "^0.17.0"
+  },
+  "devDependencies": {
+    "@truffle/hdwallet-provider": "^1.4.2",
+    "@openzeppelin/test-helpers": "^0.5.15",
+    "chalk": "^4.1.2",
+    "truffle": "^5.4.14",
+    "truffle-plugin-verify": "^0.5.11"
+  }
+}
