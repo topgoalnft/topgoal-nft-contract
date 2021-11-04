@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity 0.8.4;
 
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
@@ -43,6 +43,8 @@ contract OERC721 is Context, ERC165, IERC721, IERC721Metadata, Ownable {
 
     // Mapping from owner to operator approvals
     mapping (address => mapping (address => bool)) private _operatorApprovals;
+
+    event SetAdmin(address indexed oldAdmin, address indexed newAdmin);
 
     /**
      * @dev Initializes the contract by setting a `name` and a `symbol` to the token collection.
@@ -131,7 +133,9 @@ contract OERC721 is Context, ERC165, IERC721, IERC721Metadata, Ownable {
 
     function setAdmin(address newAdmin) external onlyOwner {
         require(newAdmin != address(0), "Admin: new admin is the zero address");
+        address oldAdmin = _admin;
         _admin = newAdmin;
+        emit SetAdmin(oldAdmin, newAdmin);
     }
 
     /**
